@@ -47,8 +47,10 @@ makedepend:
 -include makedepend
 
 install: $(PROGRAM)
-	$(INSTALL) -s $(PROGRAM) $(bindir)/$(PROGRAM)
-	$(INSTALL) $(PROGRAM).$(MANPAGE) $(mandir)/man$(MANPAGE)/$(PROGRAM).$(MANPAGE)
+	-@mkdir $(DESTDIR)$(bindir)
+	-@mkdir $(DESTDIR)$(mandir)
+	$(INSTALL) -s $(PROGRAM) $(DESTDIR)$(bindir)/$(PROGRAM)
+	$(INSTALL) $(PROGRAM).$(MANPAGE) $(DESTDIR)$(mandir)/man$(MANPAGE)/$(PROGRAM).$(MANPAGE)
 
 uninstall:
 	-@ rm -f $(bindir)/$(PROGRAM)
